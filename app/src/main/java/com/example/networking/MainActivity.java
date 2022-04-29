@@ -26,12 +26,15 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonFile(this, this).execute(JSON_FILE);
 
+
         Tracks = new ArrayList<>();
         Tracks.add("Circuit de Spa-Francorchamps");
         Tracks.add("Silverstone Circuit");
         Tracks.add("Laguna Seca Raceway");
 
         myRecyclerView = findViewById(R.id.recycler_view);
+
+        myRecyclerView.setHasFixedSize(true);
         myLayoutManager = new LinearLayoutManager(this);
         myAdapter = new MainAdapter(Tracks);
         myRecyclerView.setAdapter(myAdapter);
