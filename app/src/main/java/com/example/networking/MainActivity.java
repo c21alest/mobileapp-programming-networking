@@ -7,17 +7,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
-    private final String JSON_URL = "HTTPS_URL_TO_JSON_DATA_CHANGE_THIS_URL";
+    private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
     private final String JSON_FILE = "mountains.json";
     ArrayList<String> Tracks;
     RecyclerView myRecyclerView;
     RecyclerView.Adapter myAdapter;
     RecyclerView.LayoutManager myLayoutManager;
+
+    private Mountain[] mountains;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         setContentView(R.layout.activity_main);
 
         new JsonFile(this, this).execute(JSON_FILE);
-
 
         Tracks = new ArrayList<>();
         Tracks.add("Circuit de Spa-Francorchamps");
@@ -36,15 +45,28 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         myRecyclerView.setHasFixedSize(true);
         myLayoutManager = new LinearLayoutManager(this);
-        myAdapter = new MainAdapter(Tracks);
-        myRecyclerView.setAdapter(myAdapter);
         myRecyclerView.setLayoutManager(myLayoutManager);
 
     }
 
     @Override
     public void onPostExecute(String json) {
-        Log.d("MainActivity", json);
-    }
+        Log.d("==>", json);
 
+        Gson gson = new Gson();
+        mountains = gson.fromJson(json, Mountain[].class);
+
+        for (int i = 0; i < mountains.length; i++) {
+            Log.d("==>","Hittade ett berg" + mountains[i].getName());
+            
+        }
+
+/*        myAdapter = new MainAdapter(target2);
+        myRecyclerView.setAdapter(myAdapter);
+
+ */
+
+    }
 }
+
+
