@@ -28,7 +28,7 @@ Efter det länkas layout managern till den tidigare variabeln som skapades. Sen 
 och den data vi vill skicka med, i detta fall "Tracks" som är en variabel som används som test under implementeringen av recycler viewn.
 Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
 
-´´´
+```
     RecyclerView myRecyclerView;
     RecyclerView.Adapter myAdapter;
     RecyclerView.LayoutManager myLayoutManager;
