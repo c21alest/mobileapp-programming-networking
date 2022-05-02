@@ -43,11 +43,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     public void onPostExecute(String json) {
         Log.d("==>", json);
 
+        // Skapar gson instans från json fil och mountain klass
         Gson gson = new Gson();
         mountains = gson.fromJson(json, Mountain[].class);
 
         MountainsA = new ArrayList<>();
 
+        // Funkation som lägger till varje gson objekt i en array
         for (int i = 0; i < mountains.length; i++) {
             String id = mountains[i].getID();
             MountainsA.add(id);
@@ -70,24 +72,20 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             String img = mountains[i].getAuxdata().getImg();
             MountainsA.add(img);
             MountainsA.add("\n");
-            Log.d("==>","Namn: " + id);
-            Log.d("==>","Namn: " + name);
-            Log.d("==>","Namn: " + type);
-            Log.d("==>","Namn: " + company);
-            Log.d("==>","Namn: " + location);
-            Log.d("==>","Namn: " + category);
-            Log.d("==>","Namn: " + size);
-            Log.d("==>","Namn: " + cost);
-
         }
 
+        // Tar bort alla null värden från array
         while (MountainsA.remove(null)) {}
 
+        // Array som används för test
+        /*
         Tracks = new ArrayList<>();
         Tracks.add("Circuit de Spa-Francorchamps");
         Tracks.add("Silverstone Circuit");
         Tracks.add("Laguna Seca Raceway");
+         */
 
+        // Skapar en recycler view instans
         myRecyclerView = findViewById(R.id.recycler_view);
         myRecyclerView.setHasFixedSize(true);
         myLayoutManager = new LinearLayoutManager(this);

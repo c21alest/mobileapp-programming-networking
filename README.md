@@ -1,9 +1,6 @@
 
-# Rapport
+# Assignment 5: Networking
 
-**Skriv din rapport här!**
-
-_Du kan ta bort all text som finns sedan tidigare_.
 
 ## Följande grundsyn gäller dugga-svar:
 

@@ -29,6 +29,7 @@ public class Mountain {
     private Auxdata auxdata;
 
     public String getName() {
+        // Om tomt skickas null annars hela oridinarie värde
         if (name.equals("")) {
             return null;
         }
