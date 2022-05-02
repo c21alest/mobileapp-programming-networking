@@ -15,7 +15,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     // Skapar array som kommer från main activity
     ArrayList<String> Tracks;
-
     public MainAdapter(ArrayList<String> tracks) {
         Tracks = tracks;
     }

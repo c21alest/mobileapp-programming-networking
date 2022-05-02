@@ -25,7 +25,7 @@ Man börjar med att skapa de olika variablerna. I fallet för kod nedan
 får själva recyclerviewn variabeln "myRecyclerView". Sedan skapas adapter:n och slutligen layout manager:.
 När detta är gjort länkas recyclerview:n mot ett id i layouten där datan kan presenteras.
 Efter det länkas layout managern till den tidigare variabeln som skapades. Sen kopplas adaptern till en klass
-och den data vi vill skicka med, i detta fall "Tracks" som är en variabel som används som test under implementeringen av recycler viewn.
+och den data vi vill skicka med, i detta fall kan man använda "Tracks" som är en variabel som används som test under implementeringen av recycler viewn eller den senare json datan som kommer behandlas.
 Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
 
 ```
@@ -45,6 +45,62 @@ Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
         myRecyclerView.setAdapter(myAdapter);
 
 ```
+## Reycler View Adapter
+När man har instansierat recycler viewn behöver adaptern skapas. Detta görs i en egen klass där
+tre huvudaskliga metoder skapas nämligen onCreateViewHolder, onBindViewHolder, getItemCount. Där onCreateViewHolder just skapar
+en view holder så länge ingen annan existerar. Och onBindViewHolder tar hand om de olika vyerna som skapas, en recycler view har i
+uppgift att vara ett mer effektiv sett att hantera vyer genom att återanvända dem och inte visa alla samtidigt, just 
+för att spara minne, och denna metod hanterar dessa vyer. Metoden getItemCount är simpel och berättar just hur många objekt som finns.
+I dessa olika metoder kan man sedan specifisiera vad som exakt ska hända men som syns i koden nedan (se där kod kommentarer).
+
+```
+    @NonNull
+    @Override
+    public MainAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Skapar en ny view för list_items som används för att presentera innehåller i recycler view
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_items, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
+        // Hämtar varje element i array
+        holder.textD.setText(Tracks.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return Tracks.size();
+    }
+```
+
+I denna adapter klas behöver man i detta fallet också berätta vilken data som ska finnas i recycler view. I detta fallet vill man
+ha den array som kommer att skapas i activity main, detta syns i kod nedan.
+
+````
+    // Skapar array som kommer från main activity
+    ArrayList<String> Tracks;
+    public MainAdapter(ArrayList<String> tracks) {
+        Tracks = tracks;
+    }
+````
+
+Slutligen så skapas en view holder som kopplas mot ett id för var datan kan presenteras, detta syns i kod nedan.
+
+````
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView textD;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            // Kopplar variabel mot id i en layout
+            textD = itemView.findViewById(R.id.display_text);
+        }
+    }
+````
+
 
 
 ## Följande grundsyn gäller dugga-svar:
