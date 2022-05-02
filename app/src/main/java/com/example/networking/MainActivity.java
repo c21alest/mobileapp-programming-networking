@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
             MountainsA.add(size);
             String cost = mountains[i].getCost();
             MountainsA.add(cost);
+            String wiki = mountains[i].getAuxdata().getWiki();
+            MountainsA.add(wiki);
+            String img = mountains[i].getAuxdata().getImg();
+            MountainsA.add(img);
             Log.d("==>","Namn: " + id);
             Log.d("==>","Namn: " + name);
             Log.d("==>","Namn: " + type);
