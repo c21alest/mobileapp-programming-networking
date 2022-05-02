@@ -1,6 +1,51 @@
 
 # Assignment 5: Networking
 
+## Layout för Recycler View
+Först lades en layout för Recycler View till, vilket delvis bestämmer designen för
+hur recycler viewn ska presenteras. Detta görs i form av XML som syns nedan.
+```
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+```
+## Funktionen för Reycler View
+En recycler view gör det möjligt att dynamiskt visa innehåll. Det vill säga att presentera data
+oberoende av dess längd och storlek. För att skapa en recycler view krävs ett antal olika komponenter,
+där de största är en adapter, view holder och en layout manager. Adaptern är den huvudsakliga komponenterna som presenterar
+all data medans en view holder tar hand om varje individuellt element medans layout managern arrangerar alla dessa element.
+
+Men först av allt skapades en instans, kod för detta syns nedan.
+Man börjar med att skapa de olika variablerna. I fallet för kod nedan
+får själva recyclerviewn variabeln "myRecyclerView". Sedan skapas adapter:n och slutligen layout manager:.
+När detta är gjort länkas recyclerview:n mot ett id i layouten där datan kan presenteras.
+Efter det länkas layout managern till den tidigare variabeln som skapades. Sen kopplas adaptern till en klass
+och den data vi vill skicka med, i detta fall "Tracks" som är en variabel som används som test under implementeringen av recycler viewn.
+Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
+
+´´´
+    RecyclerView myRecyclerView;
+    RecyclerView.Adapter myAdapter;
+    RecyclerView.LayoutManager myLayoutManager;
+
+    (...)
+
+        // Skapar en recycler view instans
+        myRecyclerView = findViewById(R.id.recycler_view);
+        // Optimerings parameter
+        myRecyclerView.setHasFixedSize(true);
+        myLayoutManager = new LinearLayoutManager(this);
+        myRecyclerView.setLayoutManager(myLayoutManager);
+        myAdapter = new MainAdapter(MountainsA);
+        myRecyclerView.setAdapter(myAdapter);
+
+```
+
 
 ## Följande grundsyn gäller dugga-svar:
 
