@@ -16,19 +16,19 @@ hur en recycler view ska presenteras. Detta görs i form av XML som syns nedan.
 ```
 _Figur 1.1 XML för layout av Recycler View_
 
-## Funktionen för Reycler View
+## Funktionen för Recycler View
 En recycler view gör det möjligt att dynamiskt visa innehåll. Det vill säga att presentera data
 oberoende av dess längd och storlek. För att skapa en recycler view krävs ett antal olika komponenter,
-där de största är en adapter, view holder och en layout manager. Adaptern är den huvudsakliga komponenterna som presenterar
+där de största är en adapter, view holder och en layout manager. Adaptern är den huvudsakliga komponenten som presenterar
 all data medan en view holder tar hand om varje individuellt element medan layout managern arrangerar alla dessa element.
 
 Men först av allt skapades en instans, kod för detta syns nedan.
 Man börjar med att skapa de olika variablerna. I fallet för kod nedan
-får själva recycler viewn variabeln "myRecyclerView". Sedan skapas adapter:n och slutligen layout manager:.
-När detta är gjort länkas recyclerview:n mot ett id i layouten där datan kan presenteras.
+får själva recycler viewn variabeln "myRecyclerView". Sedan skapas adaptern och slutligen layout manager.
+När detta är gjort länkas recyclerviewn mot ett id i layouten där datan kan presenteras.
 Efter det länkas layout managern till den tidigare variabeln som skapades. Sen kopplas adaptern till en klass
-och den data vi vill skicka med, i detta fall kan man använda "Tracks" som är en variabel som används som test under implementeringen av recycler viewn eller den senare json datan som kommer behandlas.
-Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
+och den data vi vill skicka med, i detta fall kan man använda "Tracks" som är en variabel som används som test under implementeringen av recycler viewn eller den senare JSON datan som kommer behandlas.
+Slutligen kopplar man både adaptern och layout managern till recycler viewn.
 
 ```
     RecyclerView myRecyclerView;
@@ -47,15 +47,15 @@ Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
         myRecyclerView.setAdapter(myAdapter);
 
 ```
-_Figur 2.1 Kod för att instansiera Reycler View_
+_Figur 2.1 Kod för att instansiera en Recycler View_
 
 ## Reycler View Adapter
 När man har instansierat recycler viewn behöver adaptern skapas. Detta görs i en egen klass där
 tre huvudsakliga metoder skapas nämligen onCreateViewHolder, onBindViewHolder, getItemCount. Där onCreateViewHolder just skapar
 en view holder så länge ingen annan existerar. Och onBindViewHolder tar hand om de olika vyerna som skapas, en recycler view har i
-uppgift att vara ett mer effektiv sett att hantera vyer genom att återanvända dem och inte visa alla samtidigt, just
+uppgift att vara ett mer effektiv sätt att hantera vyer genom att återanvända dem och inte visa alla samtidigt, just
 för att spara minne, och denna metod hanterar dessa vyer. Metoden getItemCount är simpel och berättar just hur många objekt som finns.
-I dessa olika metoder kan man sedan specificera vad som exakt ska hända men som syns i koden nedan (se där kod kommentarer).
+I dessa olika metoder kan man sedan specificera vad som exakt ska hända, som syns i koden nedan (se där kod kommentarer).
 
 ```
     @NonNull
@@ -79,7 +79,7 @@ I dessa olika metoder kan man sedan specificera vad som exakt ska hända men som
 ```
 _Figur 3.1 Metoder för Recycler View_
 
-I denna adapter klas behöver man i detta fallet också berätta vilken data som ska finnas i recycler view. I detta fallet vill man
+I denna adapter klass behöver man också berätta vilken data som ska finnas i recycler view. I detta fallet vill man
 ha den array som kommer att skapas i activity main, detta syns i kod nedan.
 
 ````
@@ -109,10 +109,10 @@ Slutligen så skapas en view holder som kopplas mot ett id för var datan kan pr
 _Figur 3.3 Kod för View Holder_
 
 ## JSON data
-För att java ska kunna hantera JSON data måste de olika array elementen kopplas på klasser. Därför skapas ytterligare en klass som heter mountain som
+För att java ska kunna hantera JSON data måste de olika array elementen kopplas mot klasser. Därför skapas ytterligare en klass som heter mountain som
 sparar alla värden i strängar (se figur 4.1), sedan kan man med hjälp av dessa klasser hämta den data man vill ha. I koden som syns nedan skapas ett antal privata strängar
 som sedan med hjälp av olika getters kan skicka denna data till de funktioner som kallar på den. Här finns också en funktion för varje getter som behandlar null
-värden. Eftersom inte null beskrivs per automatik ges null värdet om strängen inte innehåller något alls. Sedan kan man i ta bort alla värden i arrayen
+värden. Eftersom inte null beskrivs per automatik ges null värdet om strängen inte innehåller något alls. Sedan kan man ta bort alla värden i arrayen
 som har noll, vilket i detta fallet görs i main och syns lite längre ner (figur 4.2).
 
 ```
@@ -157,11 +157,11 @@ _Figur 4.1 Kod för getters_
 _Figur 4.2 Kod för att ta bort null värden_
 
 ## GSON
-I tidigare steg skapades klass för att hantera JSON data men den typ av Recycler View som skapats kan inte hantera en JSON array utan därför måste
+I tidigare steg skapades en klass för att hantera JSON data men den typ av recycler view som skapats kan inte hantera en JSON array utan därför måste
 denna omvandlas till en java Arraylist. Detta görs med hjälp av exempelvis gson, som använts i detta fall. Kod nedan visar hur en gson instans skapas
 och kopplas till den tidigare mountain klassen som skapades samt json datastrukturer som parsats med tidigare redan implementerade funktioner.
-Sedan kan man hämta datan från mountain klassen som nu ges i form av strängar, och med hjälp av en for loop som körs av JSON arrayens längd kan vi
-skapa en ny java Arraylist från dessa strängar. Sedan matar man in denna nya array in i adaptern istället för tidigare Tracks arrayen.
+Sedan kan man hämta datan från mountain klassen som nu ges i form av strängar, och med hjälp av en _for_ loop som körs lika länge som JSON arrayens längd kan vi
+skapa en ny java Arraylist från dessa strängar. Sedan matar man in denna nya array in i adaptern, istället för tidigare Tracks arrayen.
 
 ```
         // Skapar gson instans från json fil och mountain klass
@@ -170,7 +170,7 @@ skapa en ny java Arraylist från dessa strängar. Sedan matar man in denna nya a
 
         MountainsA = new ArrayList<>();
 
-        // Funkation som lägger till varje gson objekt i en array
+        // Funktion som lägger till varje gson objekt i en array
         for (int i = 0; i < mountains.length; i++) {
             String id = mountains[i].getID();
             MountainsA.add(id);

@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         MountainsA = new ArrayList<>();
 
-        // Funkation som lägger till varje gson objekt i en array
+        // Funktion som lägger till varje gson objekt i en array
         for (int i = 0; i < mountains.length; i++) {
             String id = mountains[i].getID();
             MountainsA.add(id);
