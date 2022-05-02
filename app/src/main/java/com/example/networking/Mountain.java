@@ -31,4 +31,36 @@ public class Mountain {
     public String getName() {
         return name;
     }
+
+    public String getID() {
+        return ID;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public String getCost() {
+        return cost;
+    }
+
+    public Auxdata getAuxdata() {
+        return auxdata;
+    }
 }
