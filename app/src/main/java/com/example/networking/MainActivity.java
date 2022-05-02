@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
     private final String JSON_FILE = "mountains.json";
     ArrayList<String> Tracks;
+    ArrayList<String> MountainsA;
     RecyclerView myRecyclerView;
     RecyclerView.Adapter myAdapter;
     RecyclerView.LayoutManager myLayoutManager;
@@ -36,17 +37,6 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         new JsonFile(this, this).execute(JSON_FILE);
 
-        Tracks = new ArrayList<>();
-        Tracks.add("Circuit de Spa-Francorchamps");
-        Tracks.add("Silverstone Circuit");
-        Tracks.add("Laguna Seca Raceway");
-
-        myRecyclerView = findViewById(R.id.recycler_view);
-
-        myRecyclerView.setHasFixedSize(true);
-        myLayoutManager = new LinearLayoutManager(this);
-        myRecyclerView.setLayoutManager(myLayoutManager);
-
     }
 
     @Override
@@ -56,15 +46,27 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Gson gson = new Gson();
         mountains = gson.fromJson(json, Mountain[].class);
 
+        MountainsA = new ArrayList<>();
+
         for (int i = 0; i < mountains.length; i++) {
+            String name = mountains[i].getName();
+            MountainsA.add(name);
+            Log.d("==>","Namn: " + name);
             Log.d("==>","Hittade ett berg" + mountains[i].getName());
             
         }
 
-/*        myAdapter = new MainAdapter(target2);
-        myRecyclerView.setAdapter(myAdapter);
+        Tracks = new ArrayList<>();
+        Tracks.add("Circuit de Spa-Francorchamps");
+        Tracks.add("Silverstone Circuit");
+        Tracks.add("Laguna Seca Raceway");
 
- */
+        myRecyclerView = findViewById(R.id.recycler_view);
+        myRecyclerView.setHasFixedSize(true);
+        myLayoutManager = new LinearLayoutManager(this);
+        myRecyclerView.setLayoutManager(myLayoutManager);
+        myAdapter = new MainAdapter(MountainsA);
+        myRecyclerView.setAdapter(myAdapter);
 
     }
 }
