@@ -29,35 +29,75 @@ public class Mountain {
     private Auxdata auxdata;
 
     public String getName() {
-        return name;
+        if (name.equals("")) {
+            return null;
+        }
+        else {
+            return name;
+        }
     }
 
     public String getID() {
-        return ID;
+        if (ID.equals("")) {
+            return null;
+        }
+        else {
+            return ID;
+        }
     }
 
     public String getType() {
-        return type;
+        if (type.equals("")) {
+            return null;
+        }
+        else {
+            return type;
+        }
     }
 
     public String getCompany() {
-        return company;
+        if (company.equals("")) {
+            return null;
+        }
+        else {
+            return company;
+        }
     }
 
     public String getLocation() {
-        return location;
+        if (location.equals("")) {
+            return null;
+        }
+        else {
+            return location;
+        }
     }
 
     public String getCategory() {
-        return category;
+        if (category.equals("")) {
+            return null;
+        }
+        else {
+            return category;
+        }
     }
 
     public String getSize() {
-        return size;
+        if (size.equals("")) {
+            return null;
+        }
+        else {
+            return size;
+        }
     }
 
     public String getCost() {
-        return cost;
+        if (cost.equals("")) {
+            return null;
+        }
+        else {
+            return cost;
+        }
     }
 
     public Auxdata getAuxdata() {
