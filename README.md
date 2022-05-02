@@ -156,39 +156,42 @@ _Figur 4.1 Kod för getters_
 ```
 _Figur 4.2 Kod för att ta bort null värden_
 
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+## GSON
+I tidigare steg skapades klass för att hantera JSON data men den typ av Recycler View som skapats kan inte hantera en JSON array utan därför måste
+denna omvandlas till en java Arraylist. Detta görs med hjälp av exempelvis gson, som använts i detta fall. Kod nedan visar hur en gson instans skapas
+och kopplas till den tidigare mountain klassen som skapades samt json datastrukturer som parsats med tidigare redan implementerade funktioner.
+Sedan kan man hämta datan från mountain klassen som nu ges i form av strängar, och med hjälp av en for loop som körs av JSON arrayens längd kan vi
+skapa en ny java Arraylist från dessa strängar. Sedan matar man in denna nya array in i adaptern istället för tidigare Tracks arrayen.
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
-}
+        // Skapar gson instans från json fil och mountain klass
+        Gson gson = new Gson();
+        mountains = gson.fromJson(json, Mountain[].class);
+
+        MountainsA = new ArrayList<>();
+
+        // Funkation som lägger till varje gson objekt i en array
+        for (int i = 0; i < mountains.length; i++) {
+            String id = mountains[i].getID();
+            MountainsA.add(id);
+            String name = mountains[i].getName();
+            MountainsA.add(name);
+            String type = mountains[i].getType();
+            MountainsA.add(type);
+            String company = mountains[i].getCompany();
+            MountainsA.add(company);
+            String location = mountains[i].getLocation();
+            MountainsA.add(location);
+            String category = mountains[i].getCategory();
+            MountainsA.add(category);
+            String size = mountains[i].getSize();
+            MountainsA.add(size);
+            String cost = mountains[i].getCost();
+            MountainsA.add(cost);
+            String wiki = mountains[i].getAuxdata().getWiki();
+            MountainsA.add(wiki);
+            String img = mountains[i].getAuxdata().getImg();
+            MountainsA.add(img);
+            MountainsA.add("\n");
+        }
 ```
-
-Bilder läggs i samma mapp som markdown-filen.
-
-![](android.png)
-
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
