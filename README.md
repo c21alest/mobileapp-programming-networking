@@ -14,6 +14,8 @@ hur recycler viewn ska presenteras. Detta görs i form av XML som syns nedan.
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 ```
+_Figur 1.1 XML för layout av Recycler View_
+
 ## Funktionen för Reycler View
 En recycler view gör det möjligt att dynamiskt visa innehåll. Det vill säga att presentera data
 oberoende av dess längd och storlek. För att skapa en recycler view krävs ett antal olika komponenter,
@@ -45,6 +47,8 @@ Slutligen kopplar vi både adaptern och layout managern till reycler viewn.
         myRecyclerView.setAdapter(myAdapter);
 
 ```
+_Figur 2.1 Kod för att instansiera Reycler View_
+
 ## Reycler View Adapter
 När man har instansierat recycler viewn behöver adaptern skapas. Detta görs i en egen klass där
 tre huvudaskliga metoder skapas nämligen onCreateViewHolder, onBindViewHolder, getItemCount. Där onCreateViewHolder just skapar
@@ -73,6 +77,7 @@ I dessa olika metoder kan man sedan specifisiera vad som exakt ska hända men so
         return Tracks.size();
     }
 ```
+_Figur 3.1 Metoder för Recycler View_
 
 I denna adapter klas behöver man i detta fallet också berätta vilken data som ska finnas i recycler view. I detta fallet vill man
 ha den array som kommer att skapas i activity main, detta syns i kod nedan.
@@ -84,6 +89,7 @@ ha den array som kommer att skapas i activity main, detta syns i kod nedan.
         Tracks = tracks;
     }
 ````
+_Figur 3.2 Kod för att länka array_
 
 Slutligen så skapas en view holder som kopplas mot ett id för var datan kan presenteras, detta syns i kod nedan.
 
@@ -100,7 +106,55 @@ Slutligen så skapas en view holder som kopplas mot ett id för var datan kan pr
         }
     }
 ````
+_Figur 3.3 Kod för View Holder_
 
+## JSON data
+För att java ska kunna hantera JSON data måste de olika array elementen kopplas på klasser. Däför skapas ytterligare en klass som heter mountin som
+sparar alla värden i strängar (se figur 4.1), sedan kan man med hjälp av dessa klasser hämta den data man vill ha. I koden som syns nedan skapas ett antal privata strängar
+som sedan med hjälp av olika getters kan skicka denna data till de funktioner som kallar på den. Här finns också en funktion för varje getter som behandlar null
+värden. Eftersom inte null beskrivs per automatik ges null värdet om strängen inte innehåller något alls. Sedan kan man i ta bort alla värden i arrayen
+som har noll, vilket i detta fallet görs i main och syns lite längre ner (figur 4.2).
+
+```
+public class Mountain {
+    private String ID;
+    private String name;
+    private String type;
+    private String company;
+    private String location;
+    private String category;
+    private String size;
+    private String cost;
+    private Auxdata auxdata;
+
+    public String getName() {
+        // Om tomt skickas null annars hela oridinarie värde
+        if (name.equals("")) {
+            return null;
+        }
+        else {
+            return name;
+        }
+    }
+
+    public String getID() {
+        if (ID.equals("")) {
+            return null;
+        }
+        else {
+            return ID;
+        }
+    }
+  (...)
+}
+```
+_Figur 4.1 Kod för getters_
+
+```
+        // Tar bort alla null värden från array
+        while (MountainsA.remove(null)) {}
+```
+_Figur 4.2 Kod för att ta bort null värden_
 
 
 ## Följande grundsyn gäller dugga-svar:
