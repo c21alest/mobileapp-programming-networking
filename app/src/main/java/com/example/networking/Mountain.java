@@ -28,77 +28,36 @@ public class Mountain {
     private String cost;
     private Auxdata auxdata;
 
-    public String getName() {
-        // Om tomt skickas null annars hela oridinarie värde
-        if (name.equals("")) {
-            return null;
-        }
-        else {
-            return name;
-        }
+    public String getID() {
+        return ID;
     }
 
-    public String getID() {
-        if (ID.equals("")) {
-            return null;
-        }
-        else {
-            return ID;
-        }
+    public String getName() {
+        return name;
     }
 
     public String getType() {
-        if (type.equals("")) {
-            return null;
-        }
-        else {
-            return type;
-        }
+        return type;
     }
 
     public String getCompany() {
-        if (company.equals("")) {
-            return null;
-        }
-        else {
-            return company;
-        }
+        return company;
     }
 
     public String getLocation() {
-        if (location.equals("")) {
-            return null;
-        }
-        else {
-            return location;
-        }
+        return location;
     }
 
     public String getCategory() {
-        if (category.equals("")) {
-            return null;
-        }
-        else {
-            return category;
-        }
+        return category;
     }
 
     public String getSize() {
-        if (size.equals("")) {
-            return null;
-        }
-        else {
-            return size;
-        }
+        return size;
     }
 
     public String getCost() {
-        if (cost.equals("")) {
-            return null;
-        }
-        else {
-            return cost;
-        }
+        return cost;
     }
 
     public Auxdata getAuxdata() {

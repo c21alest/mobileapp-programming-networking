@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     // Skapar array som kommer från main activity
-    ArrayList<String> Tracks;
-    public MainAdapter(ArrayList<String> tracks) {
+    List<Mountain> Tracks;
+    public MainAdapter(List<Mountain> tracks) {
         Tracks = tracks;
     }
 
@@ -30,7 +31,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
         // Hämtar varje element i array
-        holder.textD.setText(Tracks.get(position));
+        holder.id.setText(Tracks.get(position).getID());
+        holder.cost.setText(Tracks.get(position).getCost());
+        holder.location.setText(Tracks.get(position).getLocation());
+        holder.name.setText(Tracks.get(position).getName());
+        holder.size.setText(Tracks.get(position).getSize());
+        holder.type.setText(Tracks.get(position).getType());
+        holder.img.setText(Tracks.get(position).getAuxdata().getImg());
+        holder.wiki.setText(Tracks.get(position).getAuxdata().getWiki());
     }
 
     @Override
@@ -40,13 +48,31 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView textD;
+        public TextView id;
+        public TextView name;
+        public TextView type;
+        public TextView company;
+        public TextView location;
+        public TextView category;
+        public TextView size;
+        public TextView cost;
+        public TextView wiki;
+        public TextView img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
             // Kopplar variabel mot id i en layout
-            textD = itemView.findViewById(R.id.display_text);
+            id = itemView.findViewById(R.id.display_id);
+            name = itemView.findViewById(R.id.display_name);
+            type = itemView.findViewById(R.id.display_type);
+            company = itemView.findViewById(R.id.display_company);
+            location = itemView.findViewById(R.id.display_location);
+            category = itemView.findViewById(R.id.display_category);
+            size = itemView.findViewById(R.id.display_size);
+            cost = itemView.findViewById(R.id.display_cost);
+            wiki = itemView.findViewById(R.id.display_wiki);
+            img = itemView.findViewById(R.id.display_img);
         }
     }
 }

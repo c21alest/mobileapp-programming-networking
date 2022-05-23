@@ -5,20 +5,10 @@ public class Auxdata {
     private String img;
 
     public String getWiki() {
-        if (wiki.equals("")) {
-            return null;
-        }
-        else {
-            return wiki;
-        }
+        return wiki;
     }
 
     public String getImg() {
-        if (img.equals("")) {
-            return null;
-        }
-        else {
-            return img;
-        }
+        return img;
     }
 }

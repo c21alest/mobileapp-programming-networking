@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=brom";
     private final String JSON_FILE = "mountains.json";
     ArrayList<String> Tracks;
-    ArrayList<String> MountainsA;
+    List<Mountain> MountainsA;
     RecyclerView myRecyclerView;
     RecyclerView.Adapter myAdapter;
     RecyclerView.LayoutManager myLayoutManager;
@@ -47,35 +47,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         Gson gson = new Gson();
         mountains = gson.fromJson(json, Mountain[].class);
 
-        MountainsA = new ArrayList<>();
-
-        // Funktion som lägger till varje gson objekt i en array
-        for (int i = 0; i < mountains.length; i++) {
-            String id = mountains[i].getID();
-            MountainsA.add(id);
-            String name = mountains[i].getName();
-            MountainsA.add(name);
-            String type = mountains[i].getType();
-            MountainsA.add(type);
-            String company = mountains[i].getCompany();
-            MountainsA.add(company);
-            String location = mountains[i].getLocation();
-            MountainsA.add(location);
-            String category = mountains[i].getCategory();
-            MountainsA.add(category);
-            String size = mountains[i].getSize();
-            MountainsA.add(size);
-            String cost = mountains[i].getCost();
-            MountainsA.add(cost);
-            String wiki = mountains[i].getAuxdata().getWiki();
-            MountainsA.add(wiki);
-            String img = mountains[i].getAuxdata().getImg();
-            MountainsA.add(img);
-            MountainsA.add("\n");
-        }
-
-        // Tar bort alla null värden från array
-        while (MountainsA.remove(null)) {}
+        MountainsA = Arrays.asList(mountains);
 
         // Array som används för test
         /*
