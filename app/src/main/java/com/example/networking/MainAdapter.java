@@ -15,9 +15,13 @@ import java.util.List;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     // Skapar array som kommer från main activity
-    List<Mountain> Tracks;
+    List<Mountain> tracks;
     public MainAdapter(List<Mountain> tracks) {
-        Tracks = tracks;
+        tracks = tracks;
+    }
+
+    public void setTracks(List<Mountain> tracks) {
+        this.tracks = tracks;
     }
 
     @NonNull
@@ -31,19 +35,19 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.ViewHolder holder, int position) {
         // Hämtar varje element i array
-        holder.id.setText(Tracks.get(position).getID());
-        holder.cost.setText(Tracks.get(position).getCost());
-        holder.location.setText(Tracks.get(position).getLocation());
-        holder.name.setText(Tracks.get(position).getName());
-        holder.size.setText(Tracks.get(position).getSize());
-        holder.type.setText(Tracks.get(position).getType());
-        holder.img.setText(Tracks.get(position).getAuxdata().getImg());
-        holder.wiki.setText(Tracks.get(position).getAuxdata().getWiki());
+        holder.id.setText(tracks.get(position).getID());
+        holder.cost.setText(tracks.get(position).getCost());
+        holder.location.setText(tracks.get(position).getLocation());
+        holder.name.setText(tracks.get(position).getName());
+        holder.size.setText(tracks.get(position).getSize());
+        holder.type.setText(tracks.get(position).getType());
+        holder.img.setText(tracks.get(position).getAuxdata().getImg());
+        holder.wiki.setText(tracks.get(position).getAuxdata().getWiki());
     }
 
     @Override
     public int getItemCount() {
-        return Tracks.size();
+        return tracks.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
