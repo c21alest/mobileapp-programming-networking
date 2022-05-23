@@ -35,6 +35,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Skapar en recycler view instans
+        myRecyclerView = findViewById(R.id.recycler_view);
+        // Optimerings parameter
+        myRecyclerView.setHasFixedSize(true);
+        myLayoutManager = new LinearLayoutManager(this);
+        myRecyclerView.setLayoutManager(myLayoutManager);
+
         new JsonFile(this, this).execute(JSON_FILE);
 
     }
@@ -49,23 +56,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         MountainsA = Arrays.asList(mountains);
 
-        // Array som används för test
-        /*
-        Tracks = new ArrayList<>();
-        Tracks.add("Circuit de Spa-Francorchamps");
-        Tracks.add("Silverstone Circuit");
-        Tracks.add("Laguna Seca Raceway");
-         */
-
-        // Skapar en recycler view instans
-        myRecyclerView = findViewById(R.id.recycler_view);
-        // Optimerings parameter
-        myRecyclerView.setHasFixedSize(true);
-        myLayoutManager = new LinearLayoutManager(this);
-        myRecyclerView.setLayoutManager(myLayoutManager);
         myAdapter = new MainAdapter(MountainsA);
         myRecyclerView.setAdapter(myAdapter);
-
     }
 }
 
