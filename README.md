@@ -32,8 +32,8 @@ Slutligen kopplar man både adaptern och layout managern till recycler viewn.
 
 ```
     RecyclerView myRecyclerView;
-    RecyclerView.Adapter myAdapter;
-    RecyclerView.LayoutManager myLayoutManager;
+    MainAdapter myAdapter;
+    LinearLayoutManager myLayoutManager;
 
     (...)
 
@@ -48,6 +48,14 @@ Slutligen kopplar man både adaptern och layout managern till recycler viewn.
 
 ```
 _Figur 2.1 Kod för att instansiera en Recycler View_
+
+För att sedan få reycler viewn till att uppdatera sitt innehåll används notifyDataSetChanged som syns i figur 2.2 nedan. Men innan det så sätts det
+nya värdet genom en setter i adaptern.
+
+```
+        myAdapter.setTracks(mountainsA);
+        myAdapter.notifyDataSetChanged();
+```
 
 ## Reycler View Adapter
 När man har instansierat recycler viewn behöver adaptern skapas. Detta görs i en egen klass där
@@ -80,13 +88,18 @@ I dessa olika metoder kan man sedan specificera vad som exakt ska hända, som sy
 _Figur 3.1 Metoder för Recycler View_
 
 I denna adapter klass behöver man också berätta vilken data som ska finnas i recycler view. I detta fallet vill man
-ha den array som kommer att skapas i activity main, detta syns i kod nedan.
+ha den array som kommer att skapas i activity main, detta syns i kod nedan. Samma gäller för den setter som kommer aktiveras när java
+berättar för adaptern att datan uppdaterats.
 
 ````
     // Skapar array som kommer från main activity
     ArrayList<String> Tracks;
     public MainAdapter(ArrayList<String> tracks) {
-        Tracks = tracks;
+        tracks = tracks;
+    }
+    
+    public void setTracks(List<Mountain> tracks) {
+        this.tracks = tracks;
     }
 ````
 _Figur 3.2 Kod för att länka array_
